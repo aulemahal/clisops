@@ -61,6 +61,14 @@ def test_subset_space_with_meridian(tmpdir):
     assert "output.nc" in result
 
 
+def test_subset_space_avoid_meridian(tmpdir):
+    """ Tests clisops subset function with a space subset."""
+    result = subset(
+        dset=CMIP5_TAS_FILE, space=(330.0, 49.0, 30.0, 65.0), output_dir=tmpdir,
+    )
+    assert "output.nc" in result
+
+
 def test_subset_with_time_and_space(tmpdir):
     """ Tests clisops subset function with time, space, level subsets."""
     result = subset(
@@ -93,6 +101,7 @@ def test_subset_with_multiple_files_zostoga(tmpdir):
     assert "output.nc" in result
 
 
+@pytest.mark.slow
 def test_subset_with_multiple_files_rh(tmpdir):
     """ Tests with multiple rh files"""
     result = subset(
